@@ -88,7 +88,7 @@ class FragmentC : NavBaseFragment<ViewModelC>() {
             is NavigationMessage.Input.NoReply -> {
 
                 viewModel.appendText(
-                    "Launched Orphan Fragment A"
+                    "Launched Orphan Fragment C"
                 )
 
             }
@@ -96,7 +96,7 @@ class FragmentC : NavBaseFragment<ViewModelC>() {
             is NavigationMessage.Input.ReplyTo -> {
 
                 viewModel.appendText(
-                    "Launched Child Fragment A with Parent ${input?.callerName} "
+                    "Launched Child Fragment C with Parent ${input?.callerName} "
                 )
 
             }
