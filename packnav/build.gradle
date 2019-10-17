@@ -1,0 +1,66 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        minSdkVersion 26
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+}
+
+dependencies {
+
+    // Kotlin STL
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+    // Backward Compatibility
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+
+    // AndroidX Core
+    implementation 'androidx.core:core-ktx:1.1.0'
+
+    // Fragments
+    implementation "androidx.fragment:fragment-ktx:1.2.0-beta02"
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-beta01"
+
+    // JetPack Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:2.2.0-beta01"
+
+    // Local Jars
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Local JVM Test
+    testImplementation 'junit:junit:4.12'
+
+    // OnDevice Test
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}

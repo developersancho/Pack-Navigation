@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentA">
+
+    <fragment
+        android:id="@+id/fragmentA"
+        android:name="com.pablichjenkov.packnavigation.FragmentA"
+        android:label="A"/>
+
+    <fragment
+        android:id="@+id/fragmentB"
+        android:name="com.pablichjenkov.packnavigation.FragmentB"
+        android:label="B"/>
+
+    <fragment
+        android:id="@+id/fragmentC"
+        android:name="com.pablichjenkov.packnavigation.FragmentC"
+        android:label="C"/>
+
+</navigation>

@@ -1,0 +1,2 @@
+include ':app', ':packnav'
+rootProject.name='PackNavigation'
