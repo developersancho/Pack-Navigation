@@ -6,7 +6,7 @@ However, there are some points that still need us the developers to tweak, in or
   - Fragment Parent-Child relationship
   - Data passing between Fragments without the need for Serialization
   - Back Navigation still tricky
-  - Some solutions to data sharing invlove sharing a common ViewModel with the Activity Scope. This may work but creates problem if two instances of the same Fragment type are launched by the navController,
+  - Some solutions for data sharing propose to use a common ViewModel with the Activity Scope. This may work but creates problem if two instances of the same Fragment Type are launched by the navController,
   "They will share the same instance of the ViewModel".
 
 ### Pack Navigation
