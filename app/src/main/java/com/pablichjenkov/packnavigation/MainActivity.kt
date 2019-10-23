@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.bottomTabA -> {
 
-                    navHelper.navigateToFragment(
+                    navHelper.navigateToRootFragment(
                         R.id.fragmentA,
                         FragmentA.Input("Activity", "Global")
                     )
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.bottomTabB -> {
 
-                    navHelper.navigateToFragment(
+                    navHelper.navigateToRootFragment(
                         R.id.fragmentB,
                         FragmentB.Input("Activity", "Global")
                     )
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.bottomTabC -> {
 
-                    navHelper.navigateToFragment(
+                    navHelper.navigateToRootFragment(
                         R.id.fragmentC,
                         FragmentC.Input("Activity", "Global")
                     )

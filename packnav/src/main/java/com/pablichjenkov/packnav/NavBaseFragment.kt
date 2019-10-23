@@ -5,7 +5,10 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import java.util.*
 
 
 abstract class NavBaseFragment<VM> : Fragment() {
@@ -235,14 +238,49 @@ abstract class NavBaseFragment<VM> : Fragment() {
             return true
         }
 
-        mailStore.depositResultMessageTo(backStackFragmentGraphId, resultMessage)
-
         // It might happen that the back stack destination is a Fragment of the same type as this.
         // In such a case we want to pop inclusive, so we pop all the way back to
         // the previous same type/id Fragment.
         val inclusive = backStackFragmentGraphId == ownDestinationId
 
+        popInputsUntilBackStackDestination(backStackFragmentGraphId)
+
+        mailStore.depositResultMessageTo(backStackFragmentGraphId, resultMessage)
+
         return navController.popBackStack(backStackFragmentGraphId, inclusive)
+
+    }
+
+    private fun popInputsUntilBackStackDestination(
+        backStackFragmentGraphId: Int
+    ) {
+
+        val field = NavController::class.java.getDeclaredField("mBackStack")
+
+        field.isAccessible = true
+
+        val mBackStack = field.get(navController) as Deque<NavBackStackEntry>
+
+        if (mBackStack.isEmpty()) {
+            // Nothing to pop if the navController back stack is empty
+            return
+        }
+
+        val iterator = mBackStack.descendingIterator()
+
+        while (iterator.hasNext()) {
+
+            val destination = iterator.next().destination
+
+            val foundDestination = destination.id == backStackFragmentGraphId
+
+            if (!foundDestination) {
+
+                mailStore.getInputMessageInfoSentTo(destination.id, true)
+
+            } else break
+
+        }
 
     }
 

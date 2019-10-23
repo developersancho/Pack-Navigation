@@ -179,7 +179,7 @@ class ViewModelC {
 
     val name = "C"
 
-    var consoleText = ""
+    var consoleText = "ViewModel Record:\n"
 
     fun appendText(text: String) {
         consoleText += text + "\n"
