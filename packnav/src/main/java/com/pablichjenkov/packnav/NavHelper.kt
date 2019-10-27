@@ -20,28 +20,20 @@ class NavHelper(
         inputPayload: Any? = null
     ) {
 
-        val destination = try {
+        mailStore.depositInputMessageTo(
+            nextFragmentGraphId,
+            NavigationMessage.Input.NoReply(inputPayload)
+        )
 
-            navController.getBackStackEntry(nextFragmentGraphId)
+        navController.navigate(nextFragmentGraphId)
 
-        } catch (th: Throwable) { null }
+    }
 
-        if (destination == null) {
+    fun navigateToPathFragment(
+        nextFragmentGraphId: Int
+    ) {
 
-            mailStore.depositInputMessageTo(
-                nextFragmentGraphId,
-                NavigationMessage.Input.NoReply(inputPayload)
-            )
-
-            navController.navigate(nextFragmentGraphId)
-
-        } else {
-
-            popInputsUntilBackStackDestination(nextFragmentGraphId)
-
-            navController.popBackStack(nextFragmentGraphId, false)
-
-        }
+        navController.navigate(nextFragmentGraphId)
 
     }
 

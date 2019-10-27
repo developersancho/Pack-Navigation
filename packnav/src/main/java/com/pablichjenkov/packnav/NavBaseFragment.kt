@@ -238,14 +238,14 @@ abstract class NavBaseFragment<VM> : Fragment() {
             return true
         }
 
+        popInputsUntilBackStackDestination(backStackFragmentGraphId)
+
+        mailStore.depositResultMessageTo(backStackFragmentGraphId, resultMessage)
+
         // It might happen that the back stack destination is a Fragment of the same type as this.
         // In such a case we want to pop inclusive, so we pop all the way back to
         // the previous same type/id Fragment.
         val inclusive = backStackFragmentGraphId == ownDestinationId
-
-        popInputsUntilBackStackDestination(backStackFragmentGraphId)
-
-        mailStore.depositResultMessageTo(backStackFragmentGraphId, resultMessage)
 
         return navController.popBackStack(backStackFragmentGraphId, inclusive)
 
@@ -259,9 +259,9 @@ abstract class NavBaseFragment<VM> : Fragment() {
 
         field.isAccessible = true
 
-        val mBackStack = field.get(navController) as Deque<NavBackStackEntry>
+        val mBackStack = field.get(navController) as? Deque<NavBackStackEntry>
 
-        if (mBackStack.isEmpty()) {
+        if (mBackStack == null || mBackStack.isEmpty()) {
             // Nothing to pop if the navController back stack is empty
             return
         }
